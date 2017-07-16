@@ -25,13 +25,22 @@ class CreateLocatorTable extends Migration
 
 
         $data_branch = array(
-            array('branch_name' => 'Manchester M25 1AX', 'address' => '460 Bury New Road' , 'lat' => 53.533231, 'longi'=> -2.284868, 'phone' => 03457345345, 'type' => 1),
-            array('branch_name' => 'Manchester M2 3HQ', 'address' => '51 Mosley Street' , 'lat' => 53.480186, 'longi'=> -2.240882, 'phone' => 03457345345, 'type' => 1),
-            array('branch_name' => 'Manchester M1 1PD', 'address' => '86-88 Market Street' , 'lat' => 53.482326, 'longi'=> -2.240630, 'phone' => 03457345345, 'type' => 1),
-            array('branch_name' => 'Manchester M2 7PW', 'address' => "17 St. Ann's Square" , 'lat' => 53.482109, 'longi'=> -2.245414, 'phone' => 03457345345, 'type' => 1),
-            array('branch_name' => 'Manchester M13 9NG', 'address' => '320/322 Oxford Road' , 'lat' => 53.461754, 'longi'=> -2.229447, 'phone' => 03457345345, 'type' => 1),
-            array('branch_name' => 'Manchester M12 4JH', 'address' => 'Longsight Shopping Centre' , 'lat' => 53.457270, 'longi'=> -2.200347, 'phone' => 03457345345, 'type' => 1),
-            array('branch_name' => 'Manchester M21 9AL', 'address' => '587 Wilbraham Road' , 'lat' => 53.442459, 'longi'=> -2.277779, 'phone' => 03457345345, 'type' => 1)
+            // BRANCh
+            array('address' => 'Manchester M25 1AX', 'branch_name' => '460 Bury New Road' , 'lat' => 53.533231, 'longi'=> -2.284868, 'phone' => 03457345345, 'type' => 1),
+            array('address' => 'Manchester M2 3HQ', 'branch_name' => '51 Mosley Street' , 'lat' => 53.480186, 'longi'=> -2.240882, 'phone' => 03457345345, 'type' => 1),
+            array('address' => 'Manchester M1 1PD', 'branch_name' => '86-88 Market Street' , 'lat' => 53.482326, 'longi'=> -2.240630, 'phone' => 03457345345, 'type' => 1),
+            array('address' => 'Manchester M2 7PW', 'branch_name' => "17 St. Ann's Square" , 'lat' => 53.482109, 'longi'=> -2.245414, 'phone' => 03457345345, 'type' => 1),
+            array('address' => 'Manchester M13 9NG', 'branch_name' => '320/322 Oxford Road' , 'lat' => 53.461754, 'longi'=> -2.229447, 'phone' => 03457345345, 'type' => 1),
+            array('address' => 'Manchester M12 4JH', 'branch_name' => 'Longsight Shopping Centre' , 'lat' => 53.457270, 'longi'=> -2.200347, 'phone' => 03457345345, 'type' => 1),
+            array('address' => 'Manchester M21 9AL', 'branch_name' => '587 Wilbraham Road' , 'lat' => 53.442459, 'longi'=> -2.277779, 'phone' => 03457345345, 'type' => 1),
+            //ATM
+            array('address' => 'Manchester M3 4EN 1AX', 'branch_name' => 'Deansgate' , 'lat' => 53.477528, 'longi'=> -2.249865, 'phone' => 03457345345, 'type' => 2),
+            array('address' => 'Manchester M2 3HQ', 'branch_name' => '51 Mosley Street' , 'lat' => 53.480186, 'longi'=> -2.240882, 'phone' => 03457345345, 'type' => 2),
+            array('address' => 'Manchester M1 1PD', 'branch_name' => '86-88 Market Street' , 'lat' => 53.482326, 'longi'=> -2.240630, 'phone' => 03457345345, 'type' => 2),
+            array('address' => 'Manchester M2 7PW', 'branch_name' => "17 St. Ann's Square" , 'lat' => 53.482109, 'longi'=> -2.245414, 'phone' => 03457345345, 'type' => 2),
+            array('address' => 'Manchester M15 6HD', 'branch_name' => 'Fallowfield Campus' , 'lat' => 53.463742, 'longi'=> -2.240831, 'phone' => 03457345345, 'type' => 2),
+            array('address' => 'Hulme M15 5AS', 'branch_name' => 'Princess Road' , 'lat' => 53.461281, 'longi'=> -2.246906, 'phone' => 03457345345, 'type' => 2),
+            array('address' => 'Manchester M11 3FF', 'branch_name' => 'Etihad Stadium' , 'lat' => 53.484910, 'longi'=> -2.202633, 'phone' => 03457345345, 'type' => 2),
         );
 
         // Insert some stuff
