@@ -27,7 +27,7 @@ class BranchController extends Controller
     public function check_param($lat, $longi, $type){
       $param =  array();
       if ($lat == null || $longi == null || $type == null) {
-          $message = "Parameter Kosong : ";
+          $message = "Invalid Parameter : ";
           if ($lat == null) {
               array_push($param,"Latitude");
           }
