@@ -16,11 +16,14 @@ class BranchController extends Controller
      * @return void
      */
 
-    public function version(){
-        Log::info('Get Version');
+    
+    
 
-        // Insert some stuff
-        DB::table('branchs')->insert($data_branch);
+    public function version(){
+
+
+        Log::info('Get Version');
+        
         return response()->json(['version' => '1.0', 'state' => 'Development', 'year' => 2017]);
     }
 
