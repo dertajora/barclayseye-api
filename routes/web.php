@@ -19,7 +19,7 @@ $app->get('/', function () use ($app) {
 $app->get('api/version','BranchController@version');
 $app->post('api/nearest_branch','BranchController@nearest');
 // direction customized from Google Maps API
-$app->get('api/get_direction','DirectionController@get_direction');
+$app->post('api/direction','DirectionController@get_direction');
 
 
 // download data from Barclays API

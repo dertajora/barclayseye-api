@@ -15,7 +15,7 @@ class DirectionController extends Controller
      * @return void
      */
 
-    public function get_direction(){
+    public function get_direction(Request $request){
 
         $arrContextOptions=array(
             "ssl"=>array(
@@ -26,10 +26,10 @@ class DirectionController extends Controller
 
         $mode = "driving";
         $api_key = "AIzaSyCcODVGYqPIqoosgKH-nBbA_CWYc2LjT_U";
-        $lat_start = 53.2835727000;
-        $long_start = -0.3338594000;
-        $lat_end = 52.1284000000;
-        $long_end = -0.2876890000;
+        $lat_start = $request->input('lat_start');
+        $long_start = $request->input('long_start');
+        $lat_end = $request->input('lat_end');
+        $long_end = $request->input('long_end');
         $mode = 'walking';
 
         $service_url = 'https://maps.googleapis.com/maps/api/directions/json?mode='.$mode.'&origin='.$lat_start.','.$long_start.'&destination='.$lat_end.','.$long_end.'&key='.$api_key.'';
@@ -43,7 +43,7 @@ class DirectionController extends Controller
         $result = (array)json_decode($result_from_api);
 
         if (isset($result['error_message'])) {
-            Log::info("Get data from Google Maps API failed because "$result['error_message']);
+            Log::info("Get data from Google Maps API failed because ".$result['error_message']);
             return response()->json(['result_code' => 2, 'result_message' => $result['error_message']]);
         }
         
