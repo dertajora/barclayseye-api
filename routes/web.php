@@ -18,8 +18,11 @@ $app->get('/', function () use ($app) {
 
 $app->get('api/version','BranchController@version');
 $app->post('api/nearest_branch','BranchController@nearest');
+// direction from Google Maps API
+$app->get('api/get_direction','DirectionController@get_direction');
 
 
 // download data from Barclays API
 $app->get('download_branch_from_barclays','BarclaysController@download_data_branch');
 $app->get('download_atm_from_barclays','BarclaysController@download_data_atm');
+
