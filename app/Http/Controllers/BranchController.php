@@ -68,15 +68,15 @@ class BranchController extends Controller
             return response()->json(['result_code' => 2, 'result_message' => $error_param, 'data' => '']);
         }
 
-        $nearest_branch = DB::select('select branch_name, address, lat, longi ,(
-                                          6371 /*3959*/ * acos (
+        $nearest_branch = DB::select('select BranchIdentification, StreetName, BuildingNumberOrName, TownName, PostCode, CountrySubDivision, BranchPhoto, TelephoneNumber, Country, Latitude, Longitude, (
+                                          6371 /*3959*/ * acos ( 
                                           cos ( radians('.$user_lat.') )
-                                          * cos( radians( lat ) )
-                                          * cos( radians( longi ) - radians('.$user_longi.') )
+                                          * cos( radians( Latitude ) )
+                                          * cos( radians( Longitude ) - radians('.$user_longi.') )
                                           + sin ( radians('.$user_lat.') )
-                                          * sin( radians( lat ) )
+                                          * sin( radians( Latitude ) )
                                         )
-                                    ) AS distance from branchs where type = '.$type.' order by distance asc limit 3');
+                                    ) AS distance from branches where Type = '.$type.' order by distance asc limit 3');
         if ($type == 1) {
             Log::info('Response_Send Nearest Branch_Data Sent:'.json_encode($nearest_branch));
             return response()->json(['result_code' => 1, 'result_message' => 'Data Nearest Branch Sent', 'data' => $nearest_branch]);
