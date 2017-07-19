@@ -68,11 +68,6 @@ class BranchController extends Controller
             return response()->json(['result_code' => 2, 'result_message' => $error_param, 'data' => '']);
         }
 
-        // 1
-        // $nearest_branch = Branch::all();
-        // 2
-        // $nearest_branch  = DB::table('branchs')->get();
-        // 3
         $nearest_branch = DB::select('select branch_name, address, lat, longi ,(
                                           6371 /*3959*/ * acos (
                                           cos ( radians('.$user_lat.') )

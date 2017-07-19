@@ -26,14 +26,10 @@ class BarclaysController extends Controller
         ); 
 
         $service_url = 'https://atlas.api.barclays/open-banking/v1.3/branches';
-        
         $result_from_api = file_get_contents($service_url, false, stream_context_create($arrContextOptions));
-        
-        
         $result = (array)json_decode($result_from_api);
         
         $list_branch = $result['data'];
-
         $data_branch = array();
         $i= 0;
 
@@ -68,11 +64,10 @@ class BarclaysController extends Controller
             $i++;
         }
 
-        // insert to table branchs
+        // insert data branches to database
         DB::table('branches')->insert($data_branch);
 
         Log::info('Download Data Branch Success');
-        
         return response()->json(['result_code' => 1, 'result_message' => 'Download Data Branchs from Barclays API Success']);
     }
 
@@ -86,13 +81,10 @@ class BarclaysController extends Controller
         );  
         
         $service_url = 'https://atlas.api.barclays:443/open-banking/v1.3/atms';
-        
         $result_from_api = file_get_contents($service_url, false, stream_context_create($arrContextOptions));
-        
         $result = (array)json_decode($result_from_api);
         
         $list_atm = $result['data'];
-
         $data_atm = array();
         $i= 0;
         
@@ -132,11 +124,10 @@ class BarclaysController extends Controller
             $i++;
         }
 
-        // insert to table branchs
+        // insert data ATM to database
         DB::table('branches')->insert($data_branch);
 
         Log::info('Download Data ATM Success');
-        
         return response()->json(['result_code' => 1, 'result_message' => 'Download Data Branchs from Barclays API Success']);
     }
 
