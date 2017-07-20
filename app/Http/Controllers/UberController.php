@@ -108,9 +108,9 @@ class UberController extends Controller
         curl_close($curl);
     }
 
-    public function request_estimate(){
-        // endpoint Uber get Access Token
-        $url_request = 'https://api.uber.com/v1.2/requests/estimate';
+    public function request_uber(){
+        // endpoint Uber get request estimation
+        $url_request = 'https://sandbox-api.uber.com/v1.2/requests/estimate';
 
         $headers = array(
             'Authorization: Bearer '.$this->user_token,
@@ -135,7 +135,81 @@ class UberController extends Controller
 
         $result = curl_exec($curl);
         
+        $data = (array)json_decode($result);
+        $data_param['fare_id'] = $data['fare']->fare_id;
+        $this->confirm_book($data_param);
+
+    }
+
+    public function confirm_book($data_param){
+
+        $url_request = 'https://sandbox-api.uber.com/v1.2/requests';
+
+        $headers = array(
+            'Authorization: Bearer '.$this->user_token,
+            'Content-Type:application/json',
+            'Accept-Language:en_EN'
+        );
+
+        $parameter = json_encode($data_param);
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url_request); 
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $parameter);
+
+        $result = curl_exec($curl);
+
         print_r($result);
+        
     }
     
+
+    public function current_request(){
+      
+      $ch = curl_init();
+
+      curl_setopt($ch, CURLOPT_URL, "https://sandbox-api.uber.com/v1.2/requests/current");
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+
+
+      $headers = array();
+      $headers[] = "Authorization: Bearer ".$this->user_token;
+      $headers[] = "Accept-Language: en_US";
+      $headers[] = "Content-Type: application/json";
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+      $result = curl_exec($ch);
+      if (curl_errno($ch)) {
+          echo 'Error:' . curl_error($ch);
+      }
+      curl_close ($ch);
+      print_r($result);
+    }
+
+    public function delete_request(){
+      
+      $ch = curl_init();
+
+      curl_setopt($ch, CURLOPT_URL, "https://sandbox-api.uber.com/v1.2/requests/current");
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+
+
+      $headers = array();
+      $headers[] = "Authorization: Bearer ".$this->user_token;
+      $headers[] = "Accept-Language: en_US";
+      $headers[] = "Content-Type: application/json";
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+      $result = curl_exec($ch);
+      if (curl_errno($ch)) {
+          echo 'Error:' . curl_error($ch);
+      }
+      curl_close ($ch);
+      print_r($result);
+    }
 }
