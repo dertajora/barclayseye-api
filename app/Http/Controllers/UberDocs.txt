@@ -1,0 +1,19 @@
+-H means header
+curl -X GET -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -H "Accept-Language: en_EN" \
+     'https://api.uber.com/v1.2/me'
+
+-F means post field parameter
+curl -F 'client_id=<CLIENT_ID>' \
+     -F 'client_secret=<CLIENT_SECRET>' \
+     -F 'grant_type=authorization_code' \
+     -F 'redirect_uri=<REDIRECT_URI>' \
+     -F 'code=<AUTHORIZATION_CODE>' \
+     https://login.uber.com/oauth/v2/token
+
+-d means data, please use body raw json in postman if needed
+curl  -X POST -H "Authorization: Bearer <TOKEN>" \
+     -H "Content-Type: application/json" -d \
+     '{"product_id": "821415d8-3bd5-4e27-9604-194e4359a449", "start_latitude":"37.775232", "start_longitude": "-122.4197513", "end_latitude":"37.7899886", "end_longitude": "-122.4021253","seat_count": "2"}' \
+      https://api.uber.com/v1.2/requests/estimate

@@ -2,5 +2,5 @@
 namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 class Branch extends Model {
-    protected $table = 'branchs';
+    protected $table = 'branches';
 }
