@@ -66,6 +66,7 @@ class DirectionController extends Controller
         $response['end_address'] = $data[0]->end_address; 
         $response['end_lat'] = $data[0]->end_location->lat; 
         $response['end_longi'] = $data[0]->end_location->lng; 
+        
 
         $guidance_raw = $data[0]->steps;
         $list_step = array();
@@ -78,6 +79,7 @@ class DirectionController extends Controller
             $step['end_lat'] = $data->end_location->lat;
             $step['end_longi'] = $data->end_location->lng;
             $step['instruction'] =  $this->decode_unicode($data->html_instructions);
+            $step['maneuver'] = (!isset($data->maneuver)) ? 'straight' : $data->maneuver; 
             array_push($list_step,$step);
         }
 

@@ -140,7 +140,10 @@ class UberController extends Controller
     }
 
     public function request_uber(){
-        // endpoint Uber get request estimation
+
+        
+
+        // endpoint Uber to get request estimation
         $url_request = 'https://sandbox-api.uber.com/v1.2/requests/estimate';
 
         $headers = array(
@@ -171,7 +174,7 @@ class UberController extends Controller
 
         // after get request estimate price, we should confirm booking request with calling another endpoint
         $this->confirm_book($data_param);
-
+    
         // in sandbox environment, we couldn't get data driver because no one processing our request, so we decided to sent dummy driver info to make better user experience
         $book['request_id'] = "15 min"; 
         $book['status'] = "accepted"; 
