@@ -27,7 +27,8 @@ class UberController extends Controller
     }
 
     public function laboratorium(){
-        
+        $base_url = url('/')."/api/redirect_uri";
+        echo $base_url;
     }
         
 
@@ -48,7 +49,7 @@ class UberController extends Controller
             'client_id' => $this->client_id,
             'client_secret' => $this->client_secret,
             'grant_type' => 'authorization_code',
-            'redirect_uri' => 'http://localhost/barclayseye-api/public/uber/redirect_uri',
+            'redirect_uri' => url('/')."/api/redirect_uri";,
             'code' => $authorization_code
         );
 
