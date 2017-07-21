@@ -49,7 +49,7 @@ class UberController extends Controller
             'client_id' => $this->client_id,
             'client_secret' => $this->client_secret,
             'grant_type' => 'authorization_code',
-            'redirect_uri' => url('/')."/api/redirect_uri";,
+            'redirect_uri' => url('/')."/api/redirect_uri",
             'code' => $authorization_code
         );
 
@@ -92,7 +92,7 @@ class UberController extends Controller
             $user->save();
         }
 
-        echo "Save user sukses";
+        echo "Save grant access user success";
    
     }
 
