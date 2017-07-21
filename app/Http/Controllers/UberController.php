@@ -27,13 +27,9 @@ class UberController extends Controller
     }
 
     public function laboratorium(){
-        $user = User::where('id', '=', '904b0d19-f353-4da8-8cf9-4c07d132e0e1a' )->first();
-        if ($user === null) {
-           echo "aman";
-        }else{
-            echo "ada";
-        }
+        
     }
+        
 
     public function redirect_uri(){
 
@@ -102,7 +98,7 @@ class UberController extends Controller
 
     public function get_profile($access_token){
         # below is code to get data user from Uber API
-        $url_profile = 'https://api.uber.com/v1.2/me';
+        $url_profile = 'https://sandbox-api.uber.com/v1.2/me';
 
         // endpoint Me Uber
         $headers_profile = array(
@@ -125,7 +121,7 @@ class UberController extends Controller
 
 
     public function list_uber_product(){
-        $service_url = "https://api.uber.com/v1.2/products?latitude=-6.189915&longitude=106.797791";
+        $service_url = "https://sandbox-api.uber.com/v1.2/products?latitude=-6.189915&longitude=106.797791";
        
         $headers = array(
             'Authorization:Token '.$this->server_token.'',
@@ -172,7 +168,22 @@ class UberController extends Controller
         
         $data = (array)json_decode($result);
         $data_param['fare_id'] = $data['fare']->fare_id;
+
+        // after get request estimate price, we should confirm booking request with calling another endpoint
         $this->confirm_book($data_param);
+
+        // in sandbox environment, we couldn't get data driver because no one processing our request, so we decided to sent dummy driver info to make better user experience
+        $book['request_id'] = "15 min"; 
+        $book['status'] = "accepted"; 
+        $book['estimate_arrival_time'] = "15 min"; 
+        $book['driver_position'] = '2 km';
+        $book['driver_lat'] = '-6.178797';
+        $book['driver_longi'] = '106.792347';
+        $book['driver_name'] = 'Michael John Doe';
+        $book['driver_phone'] = '+6285742724990';
+        $book['vehicle_maker'] = 'Audi';
+        $book['vehicle_model'] = 'Q5';
+        $book['license_plate'] = 'UK P L 1 T B';
 
     }
 
@@ -197,7 +208,7 @@ class UberController extends Controller
 
         $result = curl_exec($curl);
 
-        print_r($result);
+        return $result;
         
     }
     
@@ -244,7 +255,13 @@ class UberController extends Controller
       if (curl_errno($ch)) {
           echo 'Error:' . curl_error($ch);
       }
+
+      $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+      if ($http_code == 204) {
+          echo "Delete current trip success";
+      }
+
       curl_close ($ch);
-      print_r($result);
+      
     }
 }

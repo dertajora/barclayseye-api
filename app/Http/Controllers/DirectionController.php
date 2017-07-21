@@ -15,6 +15,13 @@ class DirectionController extends Controller
      * @return void
      */
 
+    public function __construct()
+    {
+        $controller = new CredentialController; 
+        $this->google_api_key = $controller->google_api_key();
+        
+    }
+
     public function get_direction(Request $request){
 
         $arrContextOptions=array(
@@ -25,7 +32,7 @@ class DirectionController extends Controller
         ); 
 
         $mode = "driving";
-        $api_key = "AIzaSyCcODVGYqPIqoosgKH-nBbA_CWYc2LjT_U";
+        $api_key = $this->google_api_key;
         $lat_start = $request->input('lat_start');
         $long_start = $request->input('long_start');
         $lat_end = $request->input('lat_end');
