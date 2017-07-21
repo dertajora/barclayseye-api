@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\CredentialController;
 use Illuminate\Http\Request;
 use Log; 
-use App\Model\Branch;
+use App\Model\User;
 use Illuminate\Support\Facades\DB;
 
 class UberController extends Controller
@@ -24,6 +24,15 @@ class UberController extends Controller
         $this->client_id = $controller->client_id();
         $this->server_token = $controller->server_token();
         $this->user_token = $controller->user_token();
+    }
+
+    public function laboratorium(){
+        $user = User::where('id', '=', '904b0d19-f353-4da8-8cf9-4c07d132e0e1a' )->first();
+        if ($user === null) {
+           echo "aman";
+        }else{
+            echo "ada";
+        }
     }
 
     public function redirect_uri(){
@@ -62,7 +71,32 @@ class UberController extends Controller
 
         // trigger function get profile
         $access_token = $data['access_token'];
-        $this->get_profile($access_token);
+        $data_user = $this->get_profile($access_token);
+
+        // save or update user to BarclaysEye DB
+        $user = User::where('id', '=', $data_user['uuid'] )->first();
+        if ($user === null) {
+            $user = new User;
+            $user->id = $data_user['uuid'];
+            $user->first_name = $data_user['first_name'];
+            $user->last_name = $data_user['last_name'];
+            $user->email = $data_user['email'];
+            $user->rider_id = $data_user['rider_id'];
+            $user->token = $access_token;
+            $user->save();
+        }else{
+            $user = User::find($data_user['uuid']);
+            $user->id = $data_user['uuid'];
+            $user->first_name = $data_user['first_name'];
+            $user->last_name = $data_user['last_name'];
+            $user->email = $data_user['email'];
+            $user->rider_id = $data_user['rider_id'];
+            $user->token = $access_token;
+            $user->save();
+        }
+
+        echo "Save user sukses";
+
         
     }
 
@@ -86,6 +120,7 @@ class UberController extends Controller
 
         $data = (array) json_decode($result);
         curl_close($curl);
+        return $data;
     }
 
 

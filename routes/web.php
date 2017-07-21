@@ -33,3 +33,5 @@ $app->get('uber/delete_request','UberController@delete_request');
 $app->get('download_branch_from_barclays','BarclaysController@download_data_branch');
 $app->get('download_atm_from_barclays','BarclaysController@download_data_atm');
 
+$app->get('laboratorium','UberController@laboratorium');
+
