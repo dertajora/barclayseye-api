@@ -21,11 +21,13 @@ $app->post('api/nearest_branch','BranchController@nearest');
 // direction customized from Google Maps API
 $app->post('api/direction','DirectionController@get_direction');
 
+// request Uber from Uber API
+$app->post('api/request_uber','UberController@request_uber');
+
 // Uber API
 $app->get('uber/redirect_uri','UberController@redirect_uri');
 $app->get('uber/list_product','UberController@list_uber_product');
 $app->get('uber/get_token','UberController@get_token');
-$app->get('uber/request_uber','UberController@request_uber');
 $app->get('uber/current_request','UberController@current_request');
 $app->get('uber/delete_request','UberController@delete_request');
 
