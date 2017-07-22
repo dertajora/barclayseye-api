@@ -136,7 +136,9 @@ class UberController extends Controller
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         $result = curl_exec($curl);
         $data = (array) json_decode($result);
-        return $data['products'][0]->product_id;
+        $product['product_id'] = $data['products'][0]->product_id;
+        $product['product_name'] = $data['products'][0]->display_name;
+        return $product;
         
     }
 
@@ -161,10 +163,10 @@ class UberController extends Controller
         $end_longitude = $request->input('long_end');
 
         // call Uber API to get first product ID that available on that area
-        $product_id = $this->get_uber_first_product($start_latitude, $start_longitude);
+        $product = $this->get_uber_first_product($start_latitude, $start_longitude);
 
         // parameter needed to sent request estimation to Uber API 
-        $data_param = array('product_id' => $product_id, 
+        $data_param = array('product_id' => $product['product_id'], 
                             'start_latitude' => $start_latitude, 
                             'start_longitude' => $start_longitude,
                             'end_latitude' => $end_latitude,
@@ -193,6 +195,7 @@ class UberController extends Controller
         // in sandbox environment, we couldn't get data driver because no one processing our request, so we decided to sent dummy driver info to make better user experience
         $book_detail['request_id'] = $data['request_id'];
         $book_detail['product_id'] = $data['product_id']; 
+        $book_detail['product_name'] = $product['product_name']; 
         $book_detail['user_lat'] = $start_latitude;
         $book_detail['user_longi'] = $start_longitude;
         $book_detail['status'] = "accepted"; 
@@ -312,6 +315,6 @@ class UberController extends Controller
         $data = (array) json_decode($result);
         
         print_r($data);
-        curl_close ($ch);
+        curl_close ($curl);
     }
 }
