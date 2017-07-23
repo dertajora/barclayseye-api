@@ -186,6 +186,8 @@ class UberController extends Controller
 
         $data = (array)json_decode($result);
         $data_param['fare_id'] = $data['fare']->fare_id;
+        $base_fare = $data['fare']->value;
+        $currency = $data['fare']->currency_code;
 
         // After sent 'request estimation' request to Uber API, we should confirm booking request with calling another endpoint, 
         // Parameter sent to confirm request similar with parameter for 'request estimation' but with  with additional parameter fare_id
@@ -195,6 +197,8 @@ class UberController extends Controller
         // in sandbox environment, we couldn't get data driver because no one processing our request, so we decided to sent dummy driver info to make better user experience
         $book_detail['request_id'] = $data['request_id'];
         $book_detail['product_id'] = $data['product_id']; 
+        $book_detail['base_fare'] = $base_fare;
+        $book_detail['currency'] = $currency;
         $book_detail['product_name'] = $product['product_name']; 
         $book_detail['user_lat'] = $start_latitude;
         $book_detail['user_longi'] = $start_longitude;
@@ -235,7 +239,6 @@ class UberController extends Controller
         curl_setopt($curl, CURLOPT_POSTFIELDS, $parameter);
 
         $result = curl_exec($curl);
-
         return $result;
         
     }
@@ -296,9 +299,9 @@ class UberController extends Controller
         // INDIA
         // $service_url = "https://sandbox-api.uber.com/v1.2/products?latitude=28.620136&longitude=77.210700";
         // ID
-        $service_url = "https://sandbox-api.uber.com/v1.2/products?latitude=-6.189915&longitude=106.797791";
+        // $service_url = "https://sandbox-api.uber.com/v1.2/products?latitude=-6.189915&longitude=106.797791";
         // UK
-        // $service_url = "https://sandbox-api.uber.com/v1.2/products?latitude=53.485097&longitude=-2.241439";
+        $service_url = "https://sandbox-api.uber.com/v1.2/products?latitude=53.485097&longitude=-2.241439";
        
         $headers = array(
             'Authorization:Token '.$this->server_token.'',
