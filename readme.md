@@ -12,7 +12,10 @@ Clone project
  ```shell
  git clone https://github.com/dertajora/barclayseye-api
  ```
- or download from this source code, copy "api" directory all its contents to your server.
+Then run this command in your terminal or command line to download all dependencies.
+ ```shell
+ composer install
+ ```	
 ### Android ###
  Clone project
  ```shell
