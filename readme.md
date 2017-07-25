@@ -1,21 +1,21 @@
-# Lumen PHP Framework
+# BarclaysEye #
+## Project Description ##
+BarclaysEye is a mobile application that could help Barclays customer with visual impairment to reach nearest Barclays ATM or branch using AdaptiveUX.  AdaptiveUX is an adaptable user experience to guide users all the way to nearest ATM or Barclays branch using a different method based on their needs.
+## Demo ##
+[![Demo Video](http://katakamu.id/barclayseye-api/public/demo.png)](https://youtu.be/9mGR5KS7AoE)
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
-
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+[![Demo Video](http://katakamu.id/barclayseye-api/public/demo_video.png)](https://www.youtube.com/watch?v=Ok1jR7-a0-Y&feature=youtu.be)
+## How to install ##
+This project divided into 2 separate projects: API and Client. API will run on server, powered by Lumen, see technical requirements [here](https://lumen.laravel.com), while client will run on Android using Android Studio IDE.
+### API ###
+Clone project
+ ```shell
+ git clone https://github.com/dertajora/barclayseye-api
+ ```
+ or download from this source code, copy "api" directory all its contents to your server.
+### Android ###
+ Clone project
+ ```shell
+ git clone https://github.com/zamahsyari/barclayseye
+ ```
+ then open with [Android Studio](https://developer.android.com/studio/index.html).
