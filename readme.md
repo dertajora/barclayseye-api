@@ -22,3 +22,8 @@ Then run this command in your terminal or command line to download all dependenc
  git clone https://github.com/zamahsyari/barclayseye
  ```
  then open with [Android Studio](https://developer.android.com/studio/index.html).
+
+ ### Thanks to ###
+- [Ibnu](https://id.linkedin.com/in/ibnu-muzzakkir-094985107)
+- [Dea](https://id.linkedin.com/in/deassyrizky)
+- [Oscar](https://id.linkedin.com/in/oscarbaskoro)
