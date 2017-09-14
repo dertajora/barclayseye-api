@@ -68,7 +68,7 @@ class DirectionController extends Controller
         $response['end_longi'] = $data[0]->end_location->lng; 
             
         $current_time = time();
-        $response['arrival_estimation'] = date('H:i:s', strtotime('+1 hour 15 minutes', $current_time));
+        $response['arrival_estimation'] = date('H:i:s', strtotime('+'.$data[0]->duration->text, $current_time));
 
         $guidance_raw = $data[0]->steps;
         $list_step = array();
