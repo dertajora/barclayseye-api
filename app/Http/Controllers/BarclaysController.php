@@ -124,11 +124,12 @@ class BarclaysController extends Controller
             $i++;
         }
 
+        
         // insert data ATM to database
-        DB::table('branches')->insert($data_branch);
+        DB::table('branches')->insert($data_atm);
 
         Log::info('Download Data ATM Success');
-        return response()->json(['result_code' => 1, 'result_message' => 'Download Data Branchs from Barclays API Success']);
+        return response()->json(['result_code' => 1, 'result_message' => 'Download Data ATMs from Barclays API Success']);
     }
 
     
