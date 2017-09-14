@@ -41,7 +41,7 @@ class DirectionController extends Controller
 
         $service_url = 'https://maps.googleapis.com/maps/api/directions/json?mode='.$mode.'&origin='.$lat_start.','.$long_start.'&destination='.$lat_end.','.$long_end.'&key='.$api_key.'';
         $result_from_api = file_get_contents($service_url, false, stream_context_create($arrContextOptions));
-        
+       
         if($result_from_api === FALSE){
             Log::info('Get data from Google Maps API failed because of network or unindentified cause');
             return response()->json(['result_code' => 2, 'result_message' => 'Failed to get data from Google Maps APi']);
@@ -66,7 +66,9 @@ class DirectionController extends Controller
         $response['end_address'] = $data[0]->end_address; 
         $response['end_lat'] = $data[0]->end_location->lat; 
         $response['end_longi'] = $data[0]->end_location->lng; 
-        
+            
+        $current_time = time();
+        $response['arrival_estimation'] = date('H:i:s', strtotime('+1 hour 15 minutes', $current_time));
 
         $guidance_raw = $data[0]->steps;
         $list_step = array();
