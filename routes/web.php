@@ -27,6 +27,9 @@ $app->post('api/direction','DirectionController@get_direction');
 // Request Uber ride from Uber API
 $app->post('api/request_uber','UberController@request_uber');
 
+// Estimate Uber fare
+$app->post('api/estimate_uber','UberController@estimate_fare');
+
 // Save user token after give authorization to BarclaysEye App
 $app->get('api/redirect_uri','UberController@redirect_uri');
 
